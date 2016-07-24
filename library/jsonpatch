@@ -133,7 +133,7 @@ def main():
         with open(json_file, 'w') as f:
             json.dump(data, f, indent=indent, separators=(',', ': '), sort_keys=True)
 
-    module.exit_json(changed=False)
+    module.exit_json(changed=changed)
 
 from ansible.module_utils.basic import *
 main()
