@@ -1,0 +1,9 @@
+---
+- name: Copy fuxture to tmp
+  copy: src=fixtures/simple.json dest=/tmp/remove-key.json
+
+- name: Patch JSON - remove key
+  jsonpatch: file="/tmp/remove-key.json" key="existing_key" state=absent
+
+- name: Test expected result
+  command: diff results/remove-key.json /tmp/remove-key.json

@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  vars_files: [group_vars/all.yml]
+  remote_user: root
+
+  roles:
+    - ../..
+
+  tasks:
+    - include: test-add-key.yml
+    - include: test-remove-key.yml
+    - include: test-change-key.yml
+    - include: test-set-int-value.yml
+    - include: test-set-list-value.yml
+
+...

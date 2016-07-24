@@ -1,0 +1,9 @@
+---
+- name: Copy fuxture to tmp
+  copy: src=fixtures/simple.json dest=/tmp/set-list-value.json
+
+- name: Patch JSON - set list value
+  jsonpatch: file="/tmp/set-list-value.json" key="existing_key" value={{ multiple_values }}
+
+- name: Test expected result
+  command: diff results/set-list-value.json /tmp/set-list-value.json

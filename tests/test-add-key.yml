@@ -1,0 +1,9 @@
+---
+- name: Copy fuxture to tmp
+  copy: src=fixtures/empty.json dest=/tmp/add-key.json
+
+- name: Patch JSON - add key
+  jsonpatch: file="/tmp/add-key.json" key="new_key" value="new_value"
+
+- name: Test expected result
+  command: diff results/add-key.json /tmp/add-key.json

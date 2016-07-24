@@ -1,0 +1,9 @@
+---
+- name: Copy fuxture to tmp
+  copy: src=fixtures/simple.json dest=/tmp/set-int-value.json
+
+- name: Patch JSON - set int value
+  jsonpatch: file="/tmp/set-int-value.json" key="existing_key" value=100
+
+- name: Test expected result
+  command: diff results/set-int-value.json /tmp/set-int-value.json
